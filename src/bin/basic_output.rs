@@ -1,6 +1,6 @@
 //! Learn how to print something to screen!
 
-use std::io::{self, Write};
+use std::io::{self, stdout, Write};
 
 /// ### Output is just same logic as input!
 /// You may have learnt basic input. Now just fill up the code and expect
@@ -31,7 +31,10 @@ use std::io::{self, Write};
 /// println!("hey, stdout!");
 /// ```
 fn stdout_lock() -> io::Result<()> {
-    todo!() // Paste code and complete it!
+
+    let stdout = stdout();
+    let mut handle = stdout.lock();
+    return handle.write_all(b"hey, stdout!");
 }
 
 fn main() {

@@ -1,6 +1,7 @@
 //! Learning basic control flow: if else
 
 use std::io;
+use std::io::{BufRead, stdin, stdout, Write};
 
 /// ### Control Flow if...else if...else...
 ///
@@ -37,7 +38,18 @@ use std::io;
 /// 2. Compare it with 5, print "Less", "Equal", "Greater" (remember newline)
 /// according to the result of comparing x with 5.
 fn cf_if() {
-    todo!() // implement here!
+    let mut buffer = String::new();
+    let mut handle = stdin().lock();
+    handle.read_line(&mut buffer).unwrap();
+    let num = buffer.trim().parse::<i32>().unwrap();
+    let mut handle = stdout().lock();
+    if num < 5{
+        handle.write_all(b"Less\n").unwrap();
+    }else if num == 5{
+        handle.write_all(b"Equal\n").unwrap();
+    }else{
+        handle.write_all(b"Greater\n").unwrap();
+    }
 }
 
 fn main() {

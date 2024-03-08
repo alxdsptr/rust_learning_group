@@ -1,5 +1,5 @@
 //! Learn basic input from keyboard!
-use std::io::{self, BufRead};
+use std::io::{self, BufRead, stdin, Write};
 
 /// ### IO is not as easy as you might have thought!
 ///
@@ -74,8 +74,15 @@ use std::io::{self, BufRead};
 ///     Ok(())
 /// }
 /// ```
-fn stdin_lock() -> io::Result<()> {
-    todo!() // Paste code and complete it!
+fn stdin_lock() -> std::io::Result<usize> {
+    print!("Feed in here: ");
+    io::stdout().flush()?;
+    let mut buffer = String::new();
+    let stdin = stdin();
+    let mut handle = stdin.lock();
+    let k = handle.read_line(&mut buffer);
+    println!("{}", buffer);
+    return k;
 }
 
 fn main() {

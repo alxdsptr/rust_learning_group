@@ -29,16 +29,20 @@ fn main() {
     let stdin = io::stdin();
     // TODO: acquire stdin lock.
     // FILL HERE!
+    let mut handle = stdin.lock();
 
     // TODO: call `read_line` and read to the buffer.
     // FILL HERE!
+    handle.read_line(&mut buffer).unwrap();
 
     let s = format!("Hello, world! Welcome to LCPU RLG, {}!", buffer);
 
     let stdout = io::stdout();
     // TODO: acquire stdout lock.
     // FILL HERE!
+    let mut handle = stdout.lock();
 
     // TODO: call `write_all` and write to the console.
     // FILL HERE!
+    handle.write_all(s.as_bytes()).unwrap();
 }

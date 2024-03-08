@@ -1,6 +1,7 @@
 //! Learning basic control flow: match
 
 use std::io;
+use std::io::BufRead;
 
 /// ### match is so powerful but we'll just introduce a bit here.
 ///
@@ -18,7 +19,14 @@ use std::io;
 ///
 /// Tips: you might want to use `trim()`, search for it yourself!
 fn cf_match() {
-    todo!() // implement here!
+    let mut buffer = String::new();
+    let mut handle = io::stdin().lock();
+    handle.read_line(&mut buffer).unwrap();
+    match buffer.trim() {
+        "whoami" => println!("LCPU_RLG"),
+        "exit" => println!("EXIT"),
+        _ => print!("{}", buffer.trim()),
+    }
 }
 
 fn main() {
