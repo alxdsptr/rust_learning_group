@@ -51,7 +51,7 @@
 /// }
 /// ```
 fn quiz() {
-    fn foo(x, y: i32) { // FIX ME
+    fn foo(x : i32, y: i32) -> &'static str{ // FIX ME
         println!("x: {}, y: {}", x, y);
         "hello"
     }

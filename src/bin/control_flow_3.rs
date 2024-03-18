@@ -1,5 +1,7 @@
 //! Learning basic control flow: loops
 
+use std::arch::x86_64::_addcarryx_u64;
+
 /// ### Loops
 ///
 /// In Rust, there are three primary loop types: `while`, `for`, and `loop`.
@@ -112,8 +114,7 @@
 ///
 /// 1. The judge presents you with a card.
 /// 2. If you possess a card bearing the same number, you play it. In the
-///    absence of such a card, you are required to continually draw from the
-///    deck until you obtain a playable card, which you then play.
+///    absence of such a card, you are require
 /// 3. If the judge presents a special card, "+2" or "+4", you are obligated to
 ///    draw two or four cards from the deck, respectively.
 /// 4. After you have played a card (or drawn cards as a result of a special
@@ -156,10 +157,44 @@
 /// ```
 fn quiz() {
     let mut total = 0;
+    let mut cnt = 0;
     let mut cards = [0; 13];
-    
-    // Your code here
-
+    loop{
+        let card = read_line();
+        let mut cs = card.chars();
+        if cs.nth(0) == Option::from('+') {
+            let num : i32;
+            if(cs.nth(0) == Option::from('2')){
+                num = 2;
+            }else{
+                num = 4;
+            }
+            for _ in 0..num{
+                let index = draw_card();
+                total += 1; cnt += 1;
+                cards[index] += 1;
+            }
+        }else{
+            let num = card.parse::<usize>();
+            let num = match num{
+                Ok(num) => num,
+                Err(_) => {
+                    println!("UNO!");
+                    break
+                }
+            };
+            while cards[num] == 0{
+                let index = draw_card();
+                total += 1; cnt += 1;
+                cards[index] += 1;
+            }
+            cards[num] -= 1; cnt -= 1;
+            if cnt == 1{
+                println!("UNO!");
+                break
+            }
+        }
+    }
     println!("{}", total);
 }
 

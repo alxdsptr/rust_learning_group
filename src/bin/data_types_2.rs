@@ -136,11 +136,18 @@
 /// ```
 ///
 fn quiz() {
-    let mut result = String::new();
-
-    // Your code here
-    
-    println!("{}", result);
+    // let mut result = String::new();
+    let mut content = read_line();
+    let num = read_line();
+    let num = parse_i32(num.as_str());
+    content = content.trim().to_string();
+    content.retain(|c| c != 'y');
+    let temp = content.clone();
+    let temp = temp.as_str();
+    for _ in 0..num - 1{
+        content.push_str(temp);
+    }
+    println!("{}", content);
 }
 
 fn read_line() -> String {

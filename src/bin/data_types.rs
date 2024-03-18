@@ -137,6 +137,19 @@
 fn quiz() {
     let x = read_i32();
     let y = read_f64();
+    let x = x as u8;
+    let mut z = y as i32;
+    if y > 0.0{
+        if y < z as f64{
+            z -= 1;
+        }
+    }else{
+        if y > z as f64{
+            z += 1;
+        }
+    }
+    let res = x as i32 + z;
+    println!("{}\n{}\n{}", x, z, res);
 
     // Your code here
 }
